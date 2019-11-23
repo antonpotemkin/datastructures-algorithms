@@ -1,5 +1,8 @@
 # theRoadToEngineer
 
+[![Build Status](https://travis-ci.org/antonpotemkin/datastructures-algorithms.svg?branch=master)](https://travis-ci.org/antonpotemkin/datastructures-algorithms)
+[![https://telegram.me/anton_potemkin](https://img.shields.io/badge/💬%20Telegram-anton_potemkin-blue.svg)](https://telegram.me/anton_potemkin)
+
 Репозиторий с реализацией разных структур данных и алгоритмов
 
 ---
