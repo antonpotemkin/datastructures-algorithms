@@ -1,32 +1,37 @@
 package ru.potemkin.dsa.array;
 
+import ru.potemkin.dsa.exception.InsertException;
+
 import java.util.Arrays;
 
 public class SimpleArray {
     private int[] arr;
+    private int max;
     private int size;
 
-    public SimpleArray(int max, int size) {
+    public SimpleArray(int max) {
         this.arr = new int[max];
-        this.size = size;
+        this.max = max;
     }
 
     public void insert(int value) {
-        this.arr[size] = value;
-        size++;
+        if (size == max) {
+            throw new InsertException("SimpleArray is full");
+        }
+        this.arr[size++] = value;
     }
 
-    boolean find(int value) {
+    public boolean find(int value) {
         int i;
-        for (i = 0; i < size; i++) {
+        for (i = 0; i < max; i++) {
             if (this.arr[i] == value) {
                 break;
             }
         }
-        return i != size;
+        return i != max;
     }
 
-    boolean delete(int value) {
+    public boolean delete(int value) {
         int j = 0;
         for (j = 0; j < size; j++) {
             if (arr[j] == value) {
@@ -41,10 +46,12 @@ public class SimpleArray {
         }
         size--;
         return true;
-
     }
 
-    public String display() {
-        return Arrays.toString(Arrays.copyOf(arr, size));
+    @Override
+    public String toString() {
+        return "SimpleArray{" +
+                "arr=" + Arrays.toString(Arrays.copyOf(arr, size)) +
+                '}';
     }
 }
