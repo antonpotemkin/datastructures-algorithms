@@ -18,10 +18,10 @@ public class DoublyLinkedList<Value extends Comparable<Value>> {
         var node = new Node<>(value);
         if (!isEmpty()) {
             first.prev = node;
+            node.next = first;
         } else {
             last = node;
         }
-        node.next = first;
         first = node;
     }
 
@@ -29,10 +29,10 @@ public class DoublyLinkedList<Value extends Comparable<Value>> {
         var node = new Node<>(value);
         if (!isEmpty()) {
             last.next = node;
+            node.prev = last;
         } else {
             first = node;
         }
-        node.prev = last;
         last = node;
     }
 
@@ -88,9 +88,24 @@ public class DoublyLinkedList<Value extends Comparable<Value>> {
         return true;
     }
 
-    public boolean insertAfter(Value value) {
-        // todo
-        return false;
+    public boolean insertAfter(Value key, Value value) {
+        var current = first;
+        var node = new Node<>(value);
+        while (current != null && current.value != key) {
+            current = current.next;
+        }
+        if (current == null) {
+            return false;
+        }
+        if (current == last) {
+            last = node;
+        } else {
+            node.next = current.next;
+            current.next.prev = node;
+        }
+        node.prev = current;
+        current.next = node;
+        return true;
     }
 
     @ToString
