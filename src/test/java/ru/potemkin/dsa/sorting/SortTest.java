@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static ru.potemkin.dsa.TestUtil.getMassive;
 
 public class SortTest {
-    private static final int LENGTH_MASSIVE = 1000;
+    private static final int LENGTH_MASSIVE = 999;
     private static final int MAX_NUMBER = 3000;
     private static int[] massive;
     private static int[] sortedMassive;
@@ -62,4 +62,11 @@ public class SortTest {
         Assertions.assertArrayEquals(sortedMassive, sort.getMas());
     }
 
+    @Test
+    public void testMergeSort() {
+        var sort = new MergeSort(new int[LENGTH_MASSIVE]);
+        System.arraycopy(massive, 0, sort.getMas(), 0, LENGTH_MASSIVE);
+        sort.sort();
+        Assertions.assertArrayEquals(sortedMassive, sort.getMas());
+    }
 }

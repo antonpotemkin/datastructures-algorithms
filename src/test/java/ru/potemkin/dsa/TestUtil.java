@@ -9,7 +9,7 @@ public class TestUtil {
 
     public static int[] getMassive(int length, int maxNumber) {
         var mas = new int[length];
-        var random = new Random(7);
+        var random = new Random();
         for (int i = 0; i < length; i++) {
             mas[i] = random.nextInt(maxNumber);
         }
