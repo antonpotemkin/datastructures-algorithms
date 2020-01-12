@@ -6,7 +6,7 @@ public class MergeSort extends Sort {
     }
 
     @Override
-    void sort() {
+    public void sort() {
         mas = innerSort(0, mas.length - 1);
     }
 

@@ -6,7 +6,7 @@ public class OddEventSort extends Sort {
     }
 
     @Override
-    void sort() {
+    public void sort() {
         var isSorted = false;
         while (!isSorted) {
             isSorted = true;

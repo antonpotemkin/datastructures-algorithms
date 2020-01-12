@@ -3,6 +3,7 @@ package ru.potemkin.dsa.sorting;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.potemkin.dsa.sorting.quick.QuickSort;
 
 import java.util.Arrays;
 
@@ -65,6 +66,14 @@ public class SortTest {
     @Test
     public void testMergeSort() {
         var sort = new MergeSort(new int[LENGTH_MASSIVE]);
+        System.arraycopy(massive, 0, sort.getMas(), 0, LENGTH_MASSIVE);
+        sort.sort();
+        Assertions.assertArrayEquals(sortedMassive, sort.getMas());
+    }
+
+    @Test
+    public void testQuickSort() {
+        var sort = new QuickSort(new int[LENGTH_MASSIVE]);
         System.arraycopy(massive, 0, sort.getMas(), 0, LENGTH_MASSIVE);
         sort.sort();
         Assertions.assertArrayEquals(sortedMassive, sort.getMas());

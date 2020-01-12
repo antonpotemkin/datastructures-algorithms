@@ -1,10 +1,10 @@
 package ru.potemkin.dsa.sorting;
 
-abstract class Sort {
+public abstract class Sort {
 
-    int[] mas;
+    protected int[] mas;
 
-    Sort(int[] mas) {
+    public Sort(int[] mas) {
         this.mas = mas;
     }
 
@@ -18,6 +18,5 @@ abstract class Sort {
         return mas;
     }
 
-    abstract void sort();
-
+    public abstract void sort();
 }

@@ -14,14 +14,12 @@ public class Partition {
     }
 
     public int partition(int pivot) {
-        int leftPtr = -1;
-        int rightPtr = size;
+        var leftPtr = -1;
+        var rightPtr = size;
         while (true) {
             while (leftPtr < size - 1 && mas[++leftPtr] < pivot) {
-
             }
             while (rightPtr > 0 && mas[--rightPtr] >= pivot) {
-
             }
             if (leftPtr >= rightPtr) {
                 break;
@@ -32,7 +30,7 @@ public class Partition {
     }
 
     private void swap(int left, int right) {
-        int temp = mas[left];
+        var temp = mas[left];
         mas[left] = mas[right];
         mas[right] = temp;
     }
