@@ -1,6 +1,6 @@
 package ru.potemkin.dsa.main;
 
-import ru.potemkin.dsa.array.SimpleArray;
+import ru.potemkin.dsa.adt.SimpleArray;
 
 import java.util.Arrays;
 import java.util.Objects;

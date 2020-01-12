@@ -1,4 +1,4 @@
-package ru.potemkin.dsa.array;
+package ru.potemkin.dsa.adt;
 
 import ru.potemkin.dsa.exception.InsertException;
 

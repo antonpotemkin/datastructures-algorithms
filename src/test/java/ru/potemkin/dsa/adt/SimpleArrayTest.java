@@ -1,4 +1,4 @@
-package ru.potemkin.dsa.array;
+package ru.potemkin.dsa.adt;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
