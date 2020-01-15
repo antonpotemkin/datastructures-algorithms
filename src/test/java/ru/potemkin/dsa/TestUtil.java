@@ -17,7 +17,7 @@ public class TestUtil {
     }
 
     public static int getRandom(int number) {
-        var random = new Random(7);
+        var random = new Random();
         return random.nextInt(number);
     }
 }

@@ -1,8 +1,6 @@
 package ru.potemkin.dsa.search;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 
@@ -15,32 +13,30 @@ public class SearchTest {
     private static final int MAX_NUMBER = 3000;
     private static int[] massive;
 
-
-    @BeforeAll
-    public static void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         massive = getMassive(LENGTH_MASSIVE, MAX_NUMBER);
         Arrays.sort(massive);
     }
 
-    @Test
+    @RepeatedTest(100)
     public void testLinearSearch() {
         Search search = new LinearSearch();
         var number = massive[getRandom(LENGTH_MASSIVE)];
-        var expected = Arrays.binarySearch(massive,number);
+        var expected = Arrays.binarySearch(massive, number);
         var actual = search.search(massive, number);
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(massive[expected], massive[actual]);
         var negativeResult = search.search(massive, MAX_NUMBER + 1);
         Assertions.assertEquals(-1, negativeResult);
     }
-    @Test
+
+    @RepeatedTest(100)
     public void testBinarySearch() {
         var search = new BinarySearch();
-        for (int i = 0; i < 1000; i ++) {
-            var number = massive[getRandom(LENGTH_MASSIVE)];
-            var expected = Arrays.binarySearch(massive,number);
-            var actual = search.search(massive, number);
-            Assertions.assertEquals(expected, actual);
-        }
+        var number = massive[getRandom(LENGTH_MASSIVE)];
+        var expected = Arrays.binarySearch(massive, number);
+        var actual = search.search(massive, number);
+        Assertions.assertEquals(expected, actual);
         var negativeResult = search.search(massive, MAX_NUMBER + 1);
         Assertions.assertEquals(-1, negativeResult);
     }
