@@ -21,8 +21,7 @@ class PartitionTest {
         IntStream.generate(() -> r.nextInt(1000)).limit(size).forEach((int value) -> partition.insert(value));
     }
 
-    @Test
-    @RepeatedTest(1)
+    @RepeatedTest(2)
     public void partition() {
         int pivot = 400;
         int partition = this.partition.partition(pivot);

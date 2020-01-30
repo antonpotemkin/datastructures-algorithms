@@ -27,6 +27,15 @@ class BinaryTreeTest {
     }
 
     @Test
+    public void emptyTest() {
+        root = new BinaryTree<Integer>();
+        assertThrows(EmptyTreeException.class, root::max);
+        assertThrows(EmptyTreeException.class, root::min);
+        assertThrows(EmptyTreeException.class, () -> root.find(2));
+        assertThrows(EmptyTreeException.class, () -> root.delete(2));
+
+    }
+    @Test
     public void minAndMaxTest() {
         assertEquals(9, root.min());
         assertEquals(71, root.max());
@@ -34,10 +43,6 @@ class BinaryTreeTest {
         root.insert(99);
         assertEquals(8, root.min());
         assertEquals(99, root.max());
-//        root = new BinaryTree<>(5);
-//        root.delete(5);
-//        assertThrows(EmptyTreeException.class, () -> root.max());
-//        assertThrows(EmptyTreeException.class, () -> root.min());
     }
 
     @Test
@@ -52,10 +57,20 @@ class BinaryTreeTest {
         root.insert(34);
         assertTrue(root.find(34));
         assertTrue(root.find(33));
-//        root = new BinaryTree<>(5);
-//        root.delete(5);
-//        assertThrows(EmptyTreeException.class, () -> root.find(2));
     }
 
+    @Test
+    public void deleteTest() {
+        assertFalse(root.delete(999));
+        assertTrue(root.delete(9));
+        assertFalse(root.find(9));
+        assertTrue(root.delete(71));
+        assertFalse(root.find(71));
+        assertTrue(root.delete(60));
+        assertFalse(root.find(60));
+        root = new BinaryTree<>(100);
+        assertTrue(root.delete(100));
+        assertThrows(EmptyTreeException.class, () -> root.find(2));
+    }
 
 }

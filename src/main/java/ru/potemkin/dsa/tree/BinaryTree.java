@@ -11,6 +11,9 @@ public class BinaryTree<T extends Comparable<T>> {
         this.root = new Node<>(value);
     }
 
+    public BinaryTree() {
+    }
+
     public T min() {
         if (Objects.isNull(root)) {
             throw new EmptyTreeException("BinaryTree is Empty");
@@ -56,7 +59,7 @@ public class BinaryTree<T extends Comparable<T>> {
 
     public void insert(T value) {
         Node<T> node = new Node<>(value);
-        if (root == null) {
+        if (Objects.isNull(root)) {
             root = node;
         } else {
             var current = root;
@@ -83,8 +86,75 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     public boolean delete(T value) {
-        //todo
-        return false;
+        if (Objects.isNull(root)) {
+            throw new EmptyTreeException("BinaryTree is Empty");
+        }
+        var parent = root;
+        var current = root;
+        var isLeft = true;
+        while (Objects.nonNull(current)) {
+            if (value.compareTo(current.value) < 0) {
+                parent = current;
+                current = current.leftChild;
+                isLeft = true;
+            } else if (value.compareTo(current.value) > 0) {
+                parent = current;
+                current = current.rightChild;
+                isLeft = false;
+            } else {
+                break;
+            }
+        }
+
+        if (Objects.isNull(current)) {
+            return false;
+        }
+        if (current.equals(root)) {
+            root = null;
+        } else if (Objects.isNull(current.leftChild) && (Objects.isNull(current.rightChild))) {
+            if (isLeft) {
+                parent.leftChild = null;
+            } else {
+                parent.rightChild = null;
+            }
+        } else if (Objects.isNull(current.rightChild)) {
+            if (isLeft) {
+                parent.leftChild = current.leftChild;
+            } else {
+                parent.rightChild = current.leftChild;
+            }
+        } else if (Objects.isNull(current.leftChild)) {
+            if (isLeft) {
+                parent.leftChild = current.rightChild;
+            } else {
+                parent.rightChild = current.rightChild;
+            }
+        } else {
+            Node<T> node = findNode(current);
+            node.leftChild = current.leftChild;
+            node.rightChild = current.rightChild;
+            if (isLeft) {
+                parent.leftChild = node;
+            } else {
+                parent.rightChild = node;
+            }
+        }
+        return true;
+    }
+
+    private Node<T> findNode(Node<T> node) {
+        var current = node.rightChild;
+        var parent = current;
+        while (Objects.nonNull(current.leftChild)) {
+            parent = current;
+            current = current.leftChild;
+        }
+        if (current.equals(node.rightChild)) {
+            node.rightChild = current.rightChild;
+        } else {
+            parent.leftChild = current.rightChild;
+        }
+        return current;
     }
 
     @Override
