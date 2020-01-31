@@ -159,11 +159,11 @@ public class BinaryTree<T extends Comparable<T>> {
 
     @Override
     public String toString() {
-        return root.toString();
+        return Objects.isNull(root) ? "{}" : root.toString();
     }
 
     private static class Node<T extends Comparable<T>> {
-        private T value;
+        private final T value;
         private Node<T> leftChild;
         private Node<T> rightChild;
 
@@ -173,9 +173,6 @@ public class BinaryTree<T extends Comparable<T>> {
 
         @Override
         public String toString() {
-            if (value == null) {
-                return "{null}";
-            }
             var left = leftChild == null ? "" : leftChild.toString();
             var right = rightChild == null ? "" : rightChild.toString();
             return left + "{" + value + "}" + right;
