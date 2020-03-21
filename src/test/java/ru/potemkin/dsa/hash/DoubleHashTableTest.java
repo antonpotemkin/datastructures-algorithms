@@ -4,14 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LinearProbHashTableTest {
-    LinearProbHashTable table;
-
+class DoubleHashTableTest {
+    DoubleHashTable table;
     @BeforeEach
     public void setUp() {
-        table = new LinearProbHashTable(11);
+        table = new DoubleHashTable(11);
         table.insert(new DataItem(22, "Value22"));
         table.insert(new DataItem(25, "Value25"));
         table.insert(new DataItem(44, "Value44"));
@@ -29,13 +27,13 @@ class LinearProbHashTableTest {
         assertEquals("Value79", table.find(79));
         assertEquals("Value99",table.remove(99).getValue());
         assertNull(table.find(99));
-        table.insert(new DataItem(19, "Value19"));
         table.insert(new DataItem(9, "Value9"));
         assertEquals("Value9", table.find(9));
-        assertEquals("Value19", table.find(19));
-        String sub = "DataItem{key=79, value='Value79'}, DataItem{key=19, value='Value19'}, DataItem{key=9, value='Value9'}]}";
-        assertTrue(table.toString().endsWith(sub));
+        assertEquals("Value22", table.find(22));
+        assertEquals("Value25", table.find(25));
+        assertEquals("Value44", table.find(44));
+        assertEquals("Value67", table.find(67));
+        assertEquals("Value88", table.find(88));
+        assertEquals("Value79", table.find(79));
     }
-
-
 }
