@@ -8,3 +8,8 @@
 
 ---
 [Структуры данных и алгоритмы в Java](https://www.ozon.ru/context/detail/id/23529814/)
+
+---
+### Coming soon
+
+[Java Concurrency на практике](https://www.ozon.ru/context/detail/id/168455111/?stat=YW5fMQ%3D%3D)
