@@ -19,9 +19,7 @@ public class DoublyLinkedList<Value extends Comparable<Value>> {
         if (!isEmpty()) {
             first.prev = node;
             node.next = first;
-        } else {
-            last = node;
-        }
+        } else last = node;
         first = node;
     }
 
@@ -30,58 +28,40 @@ public class DoublyLinkedList<Value extends Comparable<Value>> {
         if (!isEmpty()) {
             last.next = node;
             node.prev = last;
-        } else {
-            first = node;
-        }
+        } else first = node;
         last = node;
     }
 
     public Value removeFirst() {
-        if (isEmpty()) {
-            throw new RemoveException("DoublyLinkedList is empty");
-        }
+        if (isEmpty()) throw new RemoveException("DoublyLinkedList is empty");
         var temp = first;
         first = first.next;
-        if (isEmpty()) {
-            last = first;
-        } else {
-            first.prev = null;
-        }
+        if (isEmpty()) last = first;
+        else first.prev = null;
         return temp.value;
     }
 
     public Value removeLast() {
-        if (isEmpty()) {
-            throw new RemoveException("DoublyLinkedList is empty");
-        }
+        if (isEmpty()) throw new RemoveException("DoublyLinkedList is empty");
         var temp = last;
         last = last.prev;
-        if (last == null) {
-            first = null;
-        } else {
-            last.next = null;
-        }
+        if (last == null) first = null;
+        else last.next = null;
         return temp.value;
     }
 
     public boolean removeValue(Value value) {
-        if (isEmpty()) {
-            throw new RemoveException("DoublyLinkedList is empty");
-        }
+        if (isEmpty()) throw new RemoveException("DoublyLinkedList is empty");
         var current = first;
         var prev = first.prev;
         while (current != null && current.value != value) {
             prev = current;
             current = current.next;
         }
-        if (current == null) {
-            return false;
-        }
-        if (current == first) {
-            removeFirst();
-        } else if (current == last) {
-            removeLast();
-        } else {
+        if (current == null) return false;
+        if (current == first) removeFirst();
+        else if (current == last) removeLast();
+        else {
             prev.next = current.next;
             current.next.prev = prev;
         }
@@ -91,15 +71,10 @@ public class DoublyLinkedList<Value extends Comparable<Value>> {
     public boolean insertAfter(Value key, Value value) {
         var current = first;
         var node = new Node<>(value);
-        while (current != null && current.value != key) {
-            current = current.next;
-        }
-        if (current == null) {
-            return false;
-        }
-        if (current == last) {
-            last = node;
-        } else {
+        while (current != null && current.value != key) current = current.next;
+        if (current == null) return false;
+        if (current == last) last = node;
+        else {
             node.next = current.next;
             current.next.prev = node;
         }

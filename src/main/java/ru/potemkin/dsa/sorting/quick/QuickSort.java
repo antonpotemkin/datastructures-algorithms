@@ -27,13 +27,10 @@ public class QuickSort extends Sort {
         var leftPtr = left - 1;
         var rightPtr = right;
         while (true) {
-            while (mas[++leftPtr] < pivot) {
-            }
-            while (rightPtr > left && mas[--rightPtr] > pivot) {
-            }
-            if (leftPtr >= rightPtr) {
+            while (mas[++leftPtr] < pivot) { }
+            while (rightPtr > left && mas[--rightPtr] > pivot) { }
+            if (leftPtr >= rightPtr)
                 break;
-            }
             swap(leftPtr,rightPtr);
         }
         swap(leftPtr, right);

@@ -17,13 +17,9 @@ public class Partition {
         var leftPtr = -1;
         var rightPtr = size;
         while (true) {
-            while (leftPtr < size - 1 && mas[++leftPtr] < pivot) {
-            }
-            while (rightPtr > 0 && mas[--rightPtr] >= pivot) {
-            }
-            if (leftPtr >= rightPtr) {
-                break;
-            }
+            while (leftPtr < size - 1 && mas[++leftPtr] < pivot) { }
+            while (rightPtr > 0 && mas[--rightPtr] >= pivot) { }
+            if (leftPtr >= rightPtr) break;
             swap(leftPtr,rightPtr);
         }
         return leftPtr;

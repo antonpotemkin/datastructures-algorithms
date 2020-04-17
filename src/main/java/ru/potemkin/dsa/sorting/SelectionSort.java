@@ -11,13 +11,11 @@ public class SelectionSort extends Sort {
         for (var i = 0; i < mas.length - 1; i++) {
             var min = i;
             for (var j = i + 1; j < mas.length; j++) {
-                if (mas[j] < mas[min]) {
+                if (mas[j] < mas[min])
                     min = j;
-                }
             }
-            if (min != i) {
+            if (min != i)
                 swap(i, min);
-            }
         }
     }
 }

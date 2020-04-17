@@ -3,6 +3,9 @@ package ru.potemkin.dsa.adt;
 import ru.potemkin.dsa.exception.InsertException;
 import ru.potemkin.dsa.exception.RemoveException;
 
+/**
+ * Simple implementation of queue using array
+ */
 public class Queue {
     private int[] elements;
     private int nElements;
@@ -25,25 +28,19 @@ public class Queue {
     }
 
     public void inQueue(int element) {
-        if (isFull()) {
+        if (isFull())
             throw new InsertException("Queue is full");
-        }
-        if (rear == elements.length - 1) {
-            rear = -1;
-        }
+        if (rear == elements.length - 1) rear = -1;
         elements[++rear] = element;
         nElements++;
     }
 
     public int deQueue() {
-        if (isEmpty()) {
+        if (isEmpty())
             throw new RemoveException("Queue is empty");
-        }
         var element = elements[++front];
         nElements--;
-        if (front == elements.length - 1) {
-            front = -1;
-        }
+        if (front == elements.length - 1) front = -1;
         return element;
     }
 }

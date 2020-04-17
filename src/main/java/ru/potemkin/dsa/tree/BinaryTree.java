@@ -15,9 +15,8 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     public T min() {
-        if (Objects.isNull(root)) {
+        if (Objects.isNull(root))
             throw new EmptyTreeException("BinaryTree is Empty");
-        }
         var parent = root;
         var current = root;
         while (Objects.nonNull(current)) {
@@ -28,9 +27,8 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     public T max() {
-        if (Objects.isNull(root)) {
+        if (Objects.isNull(root))
             throw new EmptyTreeException("BinaryTree is Empty");
-        }
         var parent = root;
         var current = root;
         while (Objects.nonNull(current)) {
@@ -41,27 +39,25 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     public boolean find(T value) {
-        if (Objects.isNull(root)) {
+        if (Objects.isNull(root))
             throw new EmptyTreeException("BinaryTree is Empty");
-        }
         var current = root;
         while (Objects.nonNull(current)) {
-            if (value.compareTo(current.value) < 0) {
+            if (value.compareTo(current.value) < 0)
                 current = current.leftChild;
-            } else if (value.compareTo(current.value) > 0) {
+            else if (value.compareTo(current.value) > 0)
                 current = current.rightChild;
-            } else {
+            else
                 return true;
-            }
         }
         return false;
     }
 
     public void insert(T value) {
         Node<T> node = new Node<>(value);
-        if (Objects.isNull(root)) {
+        if (Objects.isNull(root))
             root = node;
-        } else {
+        else {
             var current = root;
             var parent = root;
             while (true) {
@@ -78,17 +74,15 @@ public class BinaryTree<T extends Comparable<T>> {
                         parent.rightChild = node;
                         break;
                     }
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
 
     public boolean delete(T value) {
-        if (Objects.isNull(root)) {
+        if (Objects.isNull(root))
             throw new EmptyTreeException("BinaryTree is Empty");
-        }
         var parent = root;
         var current = root;
         var isLeft = true;
@@ -101,43 +95,37 @@ public class BinaryTree<T extends Comparable<T>> {
                 parent = current;
                 current = current.rightChild;
                 isLeft = false;
-            } else {
+            } else
                 break;
-            }
         }
 
-        if (Objects.isNull(current)) {
+        if (Objects.isNull(current))
             return false;
-        }
-        if (current.equals(root)) {
+        if (current.equals(root))
             root = null;
-        } else if (Objects.isNull(current.leftChild) && (Objects.isNull(current.rightChild))) {
-            if (isLeft) {
+        else if (Objects.isNull(current.leftChild) && (Objects.isNull(current.rightChild))) {
+            if (isLeft)
                 parent.leftChild = null;
-            } else {
+            else
                 parent.rightChild = null;
-            }
         } else if (Objects.isNull(current.rightChild)) {
-            if (isLeft) {
+            if (isLeft)
                 parent.leftChild = current.leftChild;
-            } else {
+            else
                 parent.rightChild = current.leftChild;
-            }
         } else if (Objects.isNull(current.leftChild)) {
-            if (isLeft) {
+            if (isLeft)
                 parent.leftChild = current.rightChild;
-            } else {
+            else
                 parent.rightChild = current.rightChild;
-            }
         } else {
             Node<T> node = findNode(current);
             node.leftChild = current.leftChild;
             node.rightChild = current.rightChild;
-            if (isLeft) {
+            if (isLeft)
                 parent.leftChild = node;
-            } else {
+            else
                 parent.rightChild = node;
-            }
         }
         return true;
     }
@@ -149,11 +137,10 @@ public class BinaryTree<T extends Comparable<T>> {
             parent = current;
             current = current.leftChild;
         }
-        if (current.equals(node.rightChild)) {
+        if (current.equals(node.rightChild))
             node.rightChild = current.rightChild;
-        } else {
+        else
             parent.leftChild = current.rightChild;
-        }
         return current;
     }
 

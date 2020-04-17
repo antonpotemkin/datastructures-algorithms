@@ -3,6 +3,9 @@ package ru.potemkin.dsa.adt;
 import ru.potemkin.dsa.exception.InsertException;
 import ru.potemkin.dsa.exception.RemoveException;
 
+/**
+ * Simple implementation of stack
+ */
 public class Stack {
     private int[] elements;
     private int size;
@@ -21,18 +24,14 @@ public class Stack {
     }
 
     public void push(int element) {
-        if (isFull()) {
+        if (isFull())
             throw new InsertException("Stack is full");
-        } else {
-            elements[size++] = element;
-        }
+        elements[size++] = element;
     }
 
     public int pop() {
-        if (isEmpty()) {
+        if (isEmpty())
             throw new RemoveException("Stack is empty");
-        } else {
-            return elements[--size];
-        }
+        return elements[--size];
     }
 }

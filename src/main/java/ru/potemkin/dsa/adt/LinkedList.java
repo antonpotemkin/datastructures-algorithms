@@ -5,6 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import ru.potemkin.dsa.exception.RemoveException;
 
+/**
+ * Simple implementation of linked list
+ */
 @NoArgsConstructor
 public class LinkedList<Value extends Comparable<Value>> {
     private Link<Value> first;
@@ -16,32 +19,23 @@ public class LinkedList<Value extends Comparable<Value>> {
 
     public void insertFirst(Value value) {
         var link = new Link<>(value);
-        if (first == null) {
-            last = link;
-        } else {
-            link.next = first;
-        }
+        if (first == null) last = link;
+        else link.next = first;
         first = link;
     }
 
     public void insertLast(Value value) {
         var link = new Link<>(value);
-        if (last == null) {
-            first = link;
-        } else {
-            last.next = link;
-        }
+        if (last == null) first = link;
+        else last.next = link;
         last = link;
     }
 
     public Value removeFirst() {
-        if (first == null) {
-            throw new RemoveException("First is null");
-        }
+        if (first == null)
+            throw new RemoveException("LinkedList is empty");
         var temp = first;
-        if (temp.next == null) {
-            last = null;
-        }
+        if (temp.next == null) last = null;
         first = temp.next;
         return temp.value;
     }

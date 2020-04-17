@@ -11,11 +11,10 @@ public class MergeSort extends Sort {
     }
 
     private int[] innerSort(int low, int end) {
-        if (low == end) {
+        if (low == end)
             return new int[]{mas[low]};
-        } if (low > end) {
+        if (low > end)
             return new int[0];
-        }
         var mid = (end + low) / 2;
         var left = innerSort(low, mid);
         var right = innerSort(mid + 1, end);
@@ -28,18 +27,15 @@ public class MergeSort extends Sort {
         var l = 0;
         var r = 0;
         while (l < left.length && r < right.length) {
-            if (left[l] < right[r]) {
+            if (left[l] < right[r])
                 result[i++] = left[l++];
-            } else {
+            else
                 result[i++] = right[r++];
-            }
         }
-        while (l < left.length) {
+        while (l < left.length)
             result[i++] = left[l++];
-        }
-        while (r < right.length) {
+        while (r < right.length)
             result[i++] = right[r++];
-        }
         return result;
     }
 }

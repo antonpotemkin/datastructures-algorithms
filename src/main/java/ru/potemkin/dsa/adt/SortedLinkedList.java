@@ -21,18 +21,14 @@ public class SortedLinkedList<Value extends Comparable<Value>> {
             prev = next;
             next = next.next;
         }
-        if (prev == null) {
-            first = link;
-        } else {
-            prev.next = link;
-        }
+        if (prev == null) first = link;
+        else prev.next = link;
         link.next = next;
     }
 
     public Value remove() {
-        if (first == null) {
+        if (first == null)
             throw new RemoveException("SortedList is empty");
-        }
         var temp = first;
         first = temp.next;
         return temp.value;

@@ -15,35 +15,25 @@ public class SimpleArray {
     }
 
     public void insert(int value) {
-        if (size == max) {
+        if (size == max)
             throw new InsertException("SimpleArray is full");
-        }
         this.arr[size++] = value;
     }
 
     public boolean find(int value) {
         int i;
-        for (i = 0; i < max; i++) {
-            if (this.arr[i] == value) {
-                break;
-            }
-        }
+        for (i = 0; i < max; i++)
+            if (this.arr[i] == value) break;
         return i != max;
     }
 
     public boolean delete(int value) {
         int j = 0;
-        for (j = 0; j < size; j++) {
-            if (arr[j] == value) {
-                break;
-            }
-        }
-        if (j == size) {
-            return false;
-        }
-        for (int i = j; i < size - 1; i++) {
+        for (j = 0; j < size; j++)
+            if (arr[j] == value) break;
+        if (j == size) return false;
+        for (int i = j; i < size - 1; i++)
             arr[i] = arr[i + 1];
-        }
         size--;
         return true;
     }

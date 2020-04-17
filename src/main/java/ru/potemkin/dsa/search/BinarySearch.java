@@ -8,13 +8,11 @@ public class BinarySearch implements Search {
         while (low <= high) {
             var mid = (low + high)/2;
             var number = massive[mid];
-            if (number < key) {
+            if (number < key)
                 low = mid + 1;
-            } else if (number > key) {
+            else if (number > key)
                 high = mid - 1;
-            } else {
-                return mid;
-            }
+            else return mid;
         }
         return -1;
     }

@@ -17,9 +17,8 @@ public class BubbleSort extends Sort {
                     isSorted = false;
                 }
             }
-            if (isSorted) {
+            if (isSorted)
                 break;
-            }
         }
     }
 

@@ -15,9 +15,9 @@ public class QuickMedianSort extends Sort {
 
     private void quickSort(int left, int right) {
         var size = right - left + 1;
-        if (size <= 3) {
+        if (size <= 3)
             manualSort(left, right, size);
-        } else {
+        else {
             var pivot = median(left, right);
             var partition = partition(left, right, pivot);
             quickSort(left, partition - 1);
@@ -29,13 +29,10 @@ public class QuickMedianSort extends Sort {
         var leftPtr = left;
         var rightPtr = right - 1;
         while (true) {
-            while (mas[++leftPtr] < pivot) {
-            }
-            while (mas[--rightPtr] > pivot) {
-            }
-            if (leftPtr >= rightPtr) {
+            while (mas[++leftPtr] < pivot) { }
+            while (mas[--rightPtr] > pivot) { }
+            if (leftPtr >= rightPtr)
                 break;
-            }
             swap(leftPtr, rightPtr);
         }
         swap(leftPtr, right - 1);
@@ -50,25 +47,20 @@ public class QuickMedianSort extends Sort {
     }
 
     private void sortThreeElements(int left, int med, int right) {
-        if (mas[left] > mas[med]) {
+        if (mas[left] > mas[med])
             swap(left, med);
-        }
-        if (mas[left] > mas[right]) {
+        if (mas[left] > mas[right])
             swap(left, right);
-        }
-        if (mas[med] > mas[right]) {
+        if (mas[med] > mas[right])
             swap(med, right);
-        }
     }
 
     private void manualSort(int left, int right, int size) {
         if (size == 2) {
-            if (mas[left] > mas[right]) {
+            if (mas[left] > mas[right])
                 swap(left, right);
-            }
-        } else if (size == 3) {
+        } else if (size == 3)
             sortThreeElements(left, left + 1, right);
-        }
     }
 
     private void swap(int left, int right) {

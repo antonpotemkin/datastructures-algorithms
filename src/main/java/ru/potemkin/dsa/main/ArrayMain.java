@@ -10,14 +10,12 @@ public class ArrayMain {
     public static void main(String[] args) {
         var random = new Random(7);
         var left = new int[15];
-        for (var i = 0; i < left.length; i++) {
+        for (var i = 0; i < left.length; i++)
             left[i] = random.nextInt(100);
-        }
         Arrays.sort(left);
         var right = new int[10];
-        for (var i = 0; i < right.length; i++) {
+        for (var i = 0; i < right.length; i++)
             right[i] = random.nextInt(100);
-        }
         Arrays.sort(right);
         SimpleArray merge = merge(left, right);
         System.out.println(Arrays.toString(left));
@@ -25,9 +23,8 @@ public class ArrayMain {
         System.out.println(merge);
 
         var mass = new Integer[100];
-        for (var i = 0; i < mass.length; i++) {
+        for (var i = 0; i < mass.length; i++)
             mass[i] = random.nextInt(20);
-        }
         System.out.println(Arrays.toString(mass));
         System.out.println(noDups(mass));
     }
@@ -47,13 +44,11 @@ public class ArrayMain {
 
         }
         if (l == left.length) {
-            for (int j = r; j < right.length; j++) {
+            for (int j = r; j < right.length; j++)
                 result.insert(right[j]);
-            }
         } else if (r == right.length) {
-            for (int j = l; j < left.length; j++) {
+            for (int j = l; j < left.length; j++)
                 result.insert(left[j]);
-            }
         }
         return result;
     }
@@ -61,19 +56,15 @@ public class ArrayMain {
     public static SimpleArray noDups(Integer[] mass) {
         for (var i = 0; i < mass.length; i++) {
             for (var j = 0; j < mass.length; j++) {
-                if (i == j) {
-                    continue;
-                }
-                if (Objects.equals(mass[i], mass[j])) {
+                if (i == j) continue;
+                if (Objects.equals(mass[i], mass[j]))
                     mass[j] = null;
-                }
             }
         }
         SimpleArray result = new SimpleArray(mass.length);
-        for (var i = 0; i < mass.length; i++) {
-            if (mass[i] != null) {
-                result.insert(mass[i]);
-            }
+        for (Integer integer : mass) {
+            if (integer != null)
+                result.insert(integer);
         }
         return result;
     }

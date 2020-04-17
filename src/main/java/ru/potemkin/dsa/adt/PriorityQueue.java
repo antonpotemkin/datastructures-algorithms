@@ -3,6 +3,9 @@ package ru.potemkin.dsa.adt;
 import ru.potemkin.dsa.exception.InsertException;
 import ru.potemkin.dsa.exception.RemoveException;
 
+/**
+ * Implementation of priority queue using array
+ */
 public class PriorityQueue {
     private int[] elements;
     private int nElements;
@@ -21,9 +24,8 @@ public class PriorityQueue {
     }
 
     public void inQueue(int element) {
-        if (isFull()) {
+        if (isFull())
             throw new InsertException("PriorityQueue is full");
-        }
         var counter = nElements;
         while(counter > 0 && elements[counter - 1] < element) {
             elements[counter] = elements[counter - 1];
@@ -34,9 +36,8 @@ public class PriorityQueue {
     }
 
     public int deQueue() {
-        if (isEmpty()) {
-            throw new RemoveException("Queue is empty");
-        }
+        if (isEmpty())
+            throw new RemoveException("PriorityQueue is empty");
         return elements[--nElements];
     }
 }

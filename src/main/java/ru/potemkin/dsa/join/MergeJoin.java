@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Implementation of join two lists using two iterator
+ */
 public class MergeJoin implements Join {
     @Override
     public <K extends Comparable<K>, V1, V2> List<Triple<K, V1, V2>> join(List<Pair<K, V1>> left, List<Pair<K, V2>> right) {
@@ -15,25 +18,19 @@ public class MergeJoin implements Join {
         while (true) {
             var compare = leftPair.getK().compareTo(rightPair.getK());
             if (compare < 0) {
-                if (leftIterator.hasNext()) {
+                if (leftIterator.hasNext())
                     leftPair = leftIterator.next();
-                } else {
-                    break;
-                }
+                else break;
             } else if (compare > 0) {
-                if (rightIterator.hasNext()) {
+                if (rightIterator.hasNext())
                     rightPair = rightIterator.next();
-                } else {
-                    break;
-                }
+                else break;
             } else {
                 result.add(new Triple<>(leftPair.getK(), leftPair.getV(), rightPair.getV()));
                 if (leftIterator.hasNext() && rightIterator.hasNext()) {
                     leftPair = leftIterator.next();
                     rightPair = rightIterator.next();
-                } else {
-                    break;
-                }
+                } else break;
             }
         }
         return result;

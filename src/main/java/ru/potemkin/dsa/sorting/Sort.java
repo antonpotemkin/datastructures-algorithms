@@ -1,5 +1,8 @@
 package ru.potemkin.dsa.sorting;
 
+/**
+ * Base class for sorting
+ */
 public abstract class Sort {
 
     protected int[] mas;
