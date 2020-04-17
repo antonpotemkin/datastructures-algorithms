@@ -1,5 +1,7 @@
 package ru.potemkin.dsa.hash;
 
+import ru.potemkin.dsa.model.DataItem;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

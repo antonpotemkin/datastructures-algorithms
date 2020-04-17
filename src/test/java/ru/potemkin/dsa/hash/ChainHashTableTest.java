@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChainHashTableTest {
-    ChainHashTable table;
+    private ChainHashTable table;
     @BeforeEach
     public void setUp() {
         table = new ChainHashTable(11);

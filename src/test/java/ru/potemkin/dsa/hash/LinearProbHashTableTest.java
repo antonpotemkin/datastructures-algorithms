@@ -2,12 +2,13 @@ package ru.potemkin.dsa.hash;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.potemkin.dsa.model.DataItem;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LinearProbHashTableTest {
-    LinearProbHashTable table;
+    private LinearProbHashTable table;
 
     @BeforeEach
     public void setUp() {
@@ -33,7 +34,8 @@ class LinearProbHashTableTest {
         table.insert(new DataItem(9, "Value9"));
         assertEquals("Value9", table.find(9));
         assertEquals("Value19", table.find(19));
-        String sub = "DataItem{key=79, value='Value79'}, DataItem{key=19, value='Value19'}, DataItem{key=9, value='Value9'}]}";
+        String sub = "DataItem(key=79, value=Value79), DataItem(key=19, value=Value19), DataItem(key=9, value=Value9)]}";
+        System.out.println(table.toString());
         assertTrue(table.toString().endsWith(sub));
     }
 

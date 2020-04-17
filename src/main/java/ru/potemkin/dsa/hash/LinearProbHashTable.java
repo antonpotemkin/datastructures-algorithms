@@ -1,5 +1,7 @@
 package ru.potemkin.dsa.hash;
 
+import ru.potemkin.dsa.model.DataItem;
+
 /**
  * HashTable implementation using linear probing for resolving collisions
  */

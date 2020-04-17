@@ -2,11 +2,13 @@ package ru.potemkin.dsa.hash;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.potemkin.dsa.model.DataItem;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoubleHashTableTest {
-    DoubleHashTable table;
+    private DoubleHashTable table;
+
     @BeforeEach
     public void setUp() {
         table = new DoubleHashTable(11);
