@@ -1,9 +1,8 @@
 package ru.potemkin.dsa.graph;
 
+import ru.potemkin.dsa.adt.Queue;
 import ru.potemkin.dsa.adt.Stack;
-import ru.potemkin.dsa.exception.EmptyException;
 
-import java.util.Optional;
 
 /**
  * Implementation of graph algorithm
@@ -11,6 +10,7 @@ import java.util.Optional;
 public class Graph {
     private final int maxSize;
     private Stack stack;
+    private Queue queue;
     private Vertex[] vertices;
     private int[][] matrix;
     private int nVertx;
@@ -19,6 +19,7 @@ public class Graph {
         this.maxSize = maxSize;
         this.vertices = new Vertex[maxSize];
         this.stack = new Stack(maxSize);
+        this.queue = new Queue(maxSize);
         this.nVertx = 0;
         this.matrix = new int[maxSize][maxSize];
         for (int i = 0; i < maxSize; i++)
@@ -61,6 +62,27 @@ public class Graph {
         return result.toString();
     }
 
+    public String bfs() {
+        if (nVertx == 0)
+            return "";
+        var vertex = vertices[0];
+        vertex.setVisited(true);
+        queue.inQueue(0);
+        StringBuilder result = new StringBuilder(vertex.getLabel());
+        while (!queue.isEmpty()) {
+            int childIdx = -1;
+            var parentIdx = queue.deQueue();
+            while ((childIdx = getUnvisitedVer(parentIdx)) != -1) {
+                vertex = vertices[childIdx];
+                vertex.setVisited(true);
+                queue.inQueue(childIdx);
+                result.append(vertex.getLabel());
+            }
+        }
+        setUnvisited();
+        return result.toString();
+    }
+
     public int getUnvisitedVer(int verIdx) {
         for (int j = 0; j < maxSize; j++) {
             if (matrix[verIdx][j] == 1 && !vertices[j].isVisited())
@@ -77,7 +99,7 @@ public class Graph {
         return -1;
     }
 
-    private void setUnvisited(){
+    private void setUnvisited() {
         for (int i = 0; i < nVertx; i++)
             vertices[i].setVisited(false);
     }

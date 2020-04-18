@@ -30,9 +30,17 @@ public class GraphTest {
     }
 
     @Test
+    public void test_bfs(){
+        String result = "ABCDE";
+        assertEquals(result, graph.bfs());
+        assertEquals(result, graph.bfs());
+    }
+
+    @Test
     public void test_empty() {
         graph = new Graph(10);
         assertEquals("", graph.dfs());
+        assertEquals("", graph.bfs());
         graph.addEdge("A", "B");
         assertEquals("", graph.dfs());
     }
