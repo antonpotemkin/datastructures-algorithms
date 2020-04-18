@@ -1,5 +1,6 @@
 package ru.potemkin.dsa.adt;
 
+import ru.potemkin.dsa.exception.EmptyException;
 import ru.potemkin.dsa.exception.InsertException;
 import ru.potemkin.dsa.exception.RemoveException;
 
@@ -27,6 +28,13 @@ public class Stack {
         if (isFull())
             throw new InsertException("Stack is full");
         elements[size++] = element;
+    }
+
+    public int peek() {
+        if (isEmpty())
+            throw new EmptyException("Stack is empty");
+        int idx = size - 1;
+        return elements[idx];
     }
 
     public int pop() {
