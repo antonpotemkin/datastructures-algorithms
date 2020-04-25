@@ -5,30 +5,16 @@ import ru.potemkin.dsa.adt.Stack;
 
 
 /**
- * Implementation of graph algorithm
+ * Implementation of unweighted graph algorithm
  */
-public class Graph {
-    private final int maxSize;
+public class UnweightGraph extends AbstractGraph {
     private Stack stack;
     private Queue queue;
-    private Vertex[] vertices;
-    private int[][] matrix;
-    private int nVertx;
 
-    public Graph(int maxSize) {
-        this.maxSize = maxSize;
-        this.vertices = new Vertex[maxSize];
+    public UnweightGraph(int maxSize) {
+        super(maxSize);
         this.stack = new Stack(maxSize);
         this.queue = new Queue(maxSize);
-        this.nVertx = 0;
-        this.matrix = new int[maxSize][maxSize];
-        for (int i = 0; i < maxSize; i++)
-            for (int j = 0; j < maxSize; j++)
-                matrix[i][j] = 0;
-    }
-
-    public void addVertex(String label) {
-        vertices[nVertx++] = new Vertex(label);
     }
 
     public void addEdge(String from, String to) {
@@ -81,26 +67,5 @@ public class Graph {
         }
         setUnvisited();
         return result.toString();
-    }
-
-    public int getUnvisitedVer(int verIdx) {
-        for (int j = 0; j < maxSize; j++) {
-            if (matrix[verIdx][j] == 1 && !vertices[j].isVisited())
-                return j;
-        }
-        return -1;
-    }
-
-    private int findIdx(String label) {
-        for (int i = 0; i < nVertx; i++) {
-            if (vertices[i].getLabel().equals(label))
-                return i;
-        }
-        return -1;
-    }
-
-    private void setUnvisited() {
-        for (int i = 0; i < nVertx; i++)
-            vertices[i].setVisited(false);
     }
 }

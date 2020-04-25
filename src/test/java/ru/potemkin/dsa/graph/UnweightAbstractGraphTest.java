@@ -1,15 +1,15 @@
 package ru.potemkin.dsa.graph;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GraphTest {
-    private static Graph graph = new Graph(20);
+public class UnweightAbstractGraphTest {
+    private UnweightGraph graph = new UnweightGraph(20);
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    public void setUp() {
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("C");
@@ -38,7 +38,7 @@ public class GraphTest {
 
     @Test
     public void test_empty() {
-        graph = new Graph(10);
+        graph = new UnweightGraph(10);
         assertEquals("", graph.dfs());
         assertEquals("", graph.bfs());
         graph.addEdge("A", "B");
